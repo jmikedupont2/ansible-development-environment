@@ -9,9 +9,14 @@
   retries: 3
   become: true
 
+- name : get ffi
+  apt:
+    name: libffi-dev
+
 - name: install molecule
   pip:
     name: molecule
+    executable: pip3
     state: present
     extra_args: "{{ molecule_extra_args | default(omit) }}"
   register: molecule_install_molecule
